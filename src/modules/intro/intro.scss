@@ -1,0 +1,143 @@
+.intro {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.introContainer {
+  display: flex;
+
+  width: 95vw;
+  height: 90vh;
+  background-color: #fff;
+}
+
+//login styles 👿
+
+.loginContainer {
+  margin: 30px 0 0 30px;
+  width: 50vw;
+  height: 90vh;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: baseline;
+
+  .logoIcon {
+    width: 4.375rem;
+  }
+}
+.textLogo {
+  font-family: "Poppins", sans-serif;
+  font-size: 3.0625rem;
+  height: 2.3125rem;
+}
+//welcome  box🔱
+
+.welcomeHome {
+  margin-top: 15vh;
+
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.welcomeText {
+  height: 2.3125rem;
+  font-size: 3.0625rem;
+}
+
+.infoText {
+  margin-top: 2rem;
+  font-size: 1.5625rem;
+}
+
+.createAccount {
+  margin-top: 2rem;
+  border: solid 3px transparent;
+  background-color: #931df0;
+  width: 18rem;
+  height: 2.8125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.5625rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.createAccount:hover {
+  background-color: transparent;
+  border: solid 3px #931df0;
+  color: #111727;
+}
+
+.importAccount {
+  background-color: transparent;
+  border: solid 3px #931df0;
+  width: 18rem;
+  height: 2.8125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #111727;
+  font-size: 1.5625rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.importAccount:hover {
+  background-color: #931df0;
+  border: solid 3px transparent;
+  color: #fff;
+}
+
+//imagen intro styles 🧑‍🎄
+
+.introImagenContainer {
+  width: 45vw;
+  height: 90vh;
+  background-color: #e4eaf8;
+}
+
+.introImagenContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.lemmaContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  background: rgba(228, 234, 248, 0.01);
+  backdrop-filter: blur(50px);
+  width: 45vw;
+  height: 45vh;
+  span {
+    font-family: "Poppins", sans-serif;
+    font-size: 2.1875rem;
+    height: 2.3125rem;
+  }
+}
+
+//media querys 🤳
+@media only screen and (max-width: 1175px) {
+  .introImagenContainer {
+    display: none;
+  }
+  .loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 95vw;
+  }
+}
