@@ -4,20 +4,7 @@ import Line from "../../assets/line.svg"
 import Cross from "../../assets/crossOut.svg"
 import eyeOff from "../../assets/eyeOff.svg"
 import { useState } from "react"
-// async function createAccount() {
-//     const res = await fetch("http://localhost:1000/api/users",
-//         {
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json'
-//             },
-//             method: "POST",
-//             body: JSON.stringify({})
-//         })
-//     const data = await res.json()
-//     setSeedPhrase(data)
-//     console.log(data.data.seed0)
-// }
+
 
 
 export default function Intro() {
@@ -25,8 +12,9 @@ export default function Intro() {
     const [hiddeWarning, setWarning] = useState("hidde")
     const [hiddeInfo, setInfo] = useState("show")
     const [hiddeSeed, setSeed] = useState("hidde")
-    const [seedPhrase, setSeedPhrase] = useState([])
-
+    const [seedPhrase, setSeedPhrase] = useState({ data: { seed0: "", } })
+    const [hiddeLogin, setLogin] = useState("hidde")
+    const [loginStatus, setLoginStatus] = useState('')
     async function createAccount() {
         const res = await fetch("http://localhost:1000/api/users",
             {
@@ -42,6 +30,26 @@ export default function Intro() {
         console.log(data)
     }
 
+    async function login() {
+        const seed = seed1.value + "-" + seed2.value + "-" + seed3.value + "-" + seed4.value + "-" + seed5.value + "-" + seed6.value + "-" + seed7.value + "-" + seed8.value + "-" + seed9.value + "-" + seed10.value + "-" + seed11.value + "-" + seed12.value
+        const res = await fetch("http://localhost:1000/api/login",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({ seed })
+            })
+        const data = await res.json()
+        console.log(data.found)
+        if (data.found) {
+            setLoginStatus("user Founded")
+        } else {
+            setLoginStatus("no use founded")
+        }
+    }
+
     return (
         <div className="intro">
             <main className="introContainer">
@@ -55,7 +63,7 @@ export default function Intro() {
                         <h2 className="textLogo">TwitterChain</h2>
                         <h3 className="infoText">Import an account or create one.</h3>
                         <button className="createAccount" onClick={() => { setHidde("show") }}>Create an account</button>
-                        <button className="importAccount">Import an account</button>
+                        <button className="importAccount" onClick={() => { setLogin("show") }}>Import an account</button>
                     </div>
                 </div>
                 {/* imagen section  🖼️*/}
@@ -128,7 +136,40 @@ export default function Intro() {
                             <span className="seedContainer">12.-{seedPhrase.data.seed11}</span>
                         </div>
                     </div>
-                    <button className="next" onClick={() => { setWarning("show") }}>Next()</button>
+                    <button className="next" onClick={() => { setHidde("hidde") }}>Next()</button>
+                </div>
+
+            </div>
+            <div className={`${hiddeLogin} modalContainer`}>
+                <button className="closeModal" onClick={() => { setLogin("hidde") }}><img src={Cross} /></button>
+                <div className={`show infoModal`}>
+                    <img src={Logo} className="logoModal" />
+                    <span className="modalTitle">Enter your seed </span>
+                    <span className="modalSubtitle">Enter your 12 word seed phrase</span>
+                    <div className="seedPhraseContainer">
+                        <div className="column">
+                            <input className="seedContainer" placeholder="1.-" id="seed1" />
+                            <input className="seedContainer" placeholder="2.-" id="seed2" />
+                            <input className="seedContainer" placeholder="3.-" id="seed3" />
+                        </div>
+                        <div className="column">
+                            <input className="seedContainer" placeholder="4.-" id="seed4" />
+                            <input className="seedContainer" placeholder="5.-" id="seed5" />
+                            <input className="seedContainer" placeholder="6.-" id="seed6" />
+                        </div>
+                        <div className="column">
+                            <input className="seedContainer" placeholder="7.-" id="seed7" />
+                            <input className="seedContainer" placeholder="8.-" id="seed8" />
+                            <input className="seedContainer" placeholder="9.-" id="seed9" />
+                        </div>
+                        <div className="column">
+                            <input className="seedContainer" placeholder="10.-" id="seed10" />
+                            <input className="seedContainer" placeholder="11.-" id="seed11" />
+                            <input className="seedContainer" placeholder="12.-" id="seed12" />
+                        </div>
+                    </div>
+                    <button className="next" onClick={() => { login() }}>Next()</button>
+                    <h2>{loginStatus}</h2>
                 </div>
             </div>
         </div >
