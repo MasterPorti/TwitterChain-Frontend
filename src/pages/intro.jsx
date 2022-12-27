@@ -1,9 +1,10 @@
 import "./intro.scss"
-import Logo from "../../assets/logo.svg"
-import Line from "../../assets/line.svg"
-import Cross from "../../assets/crossOut.svg"
-import eyeOff from "../../assets/eyeOff.svg"
+import Logo from "../assets/logo.svg"
+import Line from "../assets/line.svg"
+import Cross from "../assets/crossOut.svg"
+import eyeOff from "../assets/eyeOff.svg"
 import { useState } from "react"
+
 
 
 
@@ -44,7 +45,10 @@ export default function Intro() {
         const data = await res.json()
         console.log(data.found)
         if (data.found) {
+            localStorage.setItem('seed', seed);
+            window.location.href = "/home"
             setLoginStatus("user Founded")
+
         } else {
             setLoginStatus("no use founded")
         }
